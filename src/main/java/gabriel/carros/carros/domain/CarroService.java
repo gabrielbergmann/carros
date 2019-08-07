@@ -1,5 +1,6 @@
 package gabriel.carros.carros.domain;
 
+import gabriel.carros.carros.domain.dto.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -7,14 +8,15 @@ import org.springframework.util.Assert;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CarroService {
     @Autowired
     CarroRepository carroRepository;
 
-    public Iterable<Carro> getCarros() {
-        return carroRepository.findAll();
+    public List<Carro> getCarros() {
+        return carroRepository.findAll().stream().map(CarroDTO::new).collect(Collectors.toList());
     }
 
     public Optional<Carro> getCarroByID(Long id) {

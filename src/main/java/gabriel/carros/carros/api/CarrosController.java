@@ -2,9 +2,8 @@ package gabriel.carros.carros.api;
 
 import gabriel.carros.carros.domain.Carro;
 import gabriel.carros.carros.domain.CarroService;
-import jdk.nashorn.internal.ir.ReturnNode;
+import gabriel.carros.carros.domain.dto.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +18,8 @@ public class CarrosController {
     private CarroService service;
 
     @GetMapping()
-    public ResponseEntity<Iterable<Carro>> get() {
-        return new ResponseEntity<>(service.getCarros(), HttpStatus.OK);
+    public ResponseEntity<List<CarroDTO>> get() {
+        return new ResponseEntity.ok(service.getCarros());
     }
 
     @GetMapping("/{id}")
@@ -32,8 +31,8 @@ public class CarrosController {
     }
 
     @GetMapping("/tipo/{tipo}")
-    public ResponseEntity getCarrosByTipo(@PathVariable("tipo") String tipo) {
-        List<Carro> carros = service.getCarroByTipo(tipo);
+    public ResponseEntity<List<CarroDTO>> getCarrosByTipo(@PathVariable("tipo") String tipo) {
+        List<CarroDTO> carros = service.getCarroByTipo(tipo);
 
         return carros.isEmpty() ?
                 ResponseEntity.noContent().build() :

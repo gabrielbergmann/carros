@@ -1,8 +1,11 @@
 package gabriel.carros.carros.domain;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
+@Data
 public class Carro {
 
     @Id
@@ -11,37 +14,5 @@ public class Carro {
     private String nome;
     private String tipo;
 
-    public Carro() {
 
-    }
-
-    public Carro(Long id, String nome, String tipo) {
-        this.id = id;
-        this.nome = nome;
-        this.tipo = tipo;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 }
