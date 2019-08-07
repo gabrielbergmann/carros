@@ -15,16 +15,20 @@ public class CarroService {
     @Autowired
     CarroRepository carroRepository;
 
-    public List<Carro> getCarros() {
-        return carroRepository.findAll().stream().map(CarroDTO::new).collect(Collectors.toList());
+    public List<CarroDTO> getCarros() {
+        List<Carro> carro = carroRepository.findAll();
+        List<CarroDTO> list = carro.stream().map(c -> new CarroDTO(c)).collect(Collectors.toList());
+        return list;
     }
 
-    public Optional<Carro> getCarroByID(Long id) {
-        return carroRepository.findById(id);
+    public Optional<CarroDTO> getCarroByID(Long id) {
+        return carroRepository.findById(id).map(c -> new CarroDTO(c));
     }
 
-    public List<Carro> getCarroByTipo(String tipo) {
-        return carroRepository.findByTipo(tipo);
+    public List<CarroDTO> getCarroByTipo(String tipo) {
+        List<Carro> carro = carroRepository.findByTipo(tipo);
+        List<CarroDTO> list = carro.stream().map(c -> new CarroDTO(c)).collect(Collectors.toList());
+        return list;
     }
 
     public Carro save(Carro carro) {
@@ -41,26 +45,27 @@ public class CarroService {
     public Carro update(Carro carro, Long id) {
         Assert.notNull(id, "Não foi possível atualizar o registro");
 
-        //busca o carro no banco de dados
-        Optional<Carro> optional = getCarroByID(id);
-        //valida se o carro existe
-        if(optional.isPresent()){
-            // copia as propriedades vindas do json para o banco
-            Carro db = optional.get();
-            db.setNome(carro.getNome());
-            db.setTipo(carro.getTipo());
-            System.out.print("Carro id: "+db.getId());
-            //salva as alterações
-            carroRepository.save(db);
-            return db;
-        } else {
-            throw new RuntimeException("Não foi possível atualizar o registro");
-        }
+//        //busca o carro no banco de dados
+//        //Optional<Carro> optional = getCarroByID(id);
+//        //valida se o carro existe
+//        if(optional.isPresent()){
+//            // copia as propriedades vindas do json para o banco
+//            Carro db = optional.get();
+//            db.setNome(carro.getNome());
+//            db.setTipo(carro.getTipo());
+//            System.out.print("Carro id: "+db.getId());
+//            //salva as alterações
+//            carroRepository.save(db);
+//            return db;
+//        } else {
+//            throw new RuntimeException("Não foi possível atualizar o registro");
+//        }
+        return null;
     }
 
     public void delete(Long id) {
-        Optional<Carro> carro = getCarroByID(id);
-        if (carro.isPresent()) {
+        //Optional<Carro> carro = getCarroByID(id);
+        if (getCarroByID(id).isPresent()) {
             carroRepository.deleteById(id);
         } else {
             throw new RuntimeException("Não foi possível deletar o registro");

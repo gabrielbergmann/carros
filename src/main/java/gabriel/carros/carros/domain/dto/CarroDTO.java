@@ -14,4 +14,8 @@ public class CarroDTO {
         this.nome = c.getNome();
         this.tipo = c.getTipo();
     }
+
+//    public static CarroDTO create(Carro c) {
+//
+//    }
 }
