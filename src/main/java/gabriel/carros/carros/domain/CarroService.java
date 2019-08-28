@@ -17,22 +17,22 @@ public class CarroService {
 
     public List<CarroDTO> getCarros() {
         List<Carro> carro = carroRepository.findAll();
-        List<CarroDTO> list = carro.stream().map(c -> new CarroDTO(c)).collect(Collectors.toList());
+        List<CarroDTO> list = carro.stream().map(c -> CarroDTO.create(c)).collect(Collectors.toList());
         return list;
     }
 
     public Optional<CarroDTO> getCarroByID(Long id) {
-        return carroRepository.findById(id).map(c -> new CarroDTO(c));
+        return carroRepository.findById(id).map(c -> CarroDTO.create(c));
     }
 
     public List<CarroDTO> getCarroByTipo(String tipo) {
         List<Carro> carro = carroRepository.findByTipo(tipo);
-        List<CarroDTO> list = carro.stream().map(c -> new CarroDTO(c)).collect(Collectors.toList());
+        List<CarroDTO> list = carro.stream().map(c -> CarroDTO.create(c)).collect(Collectors.toList());
         return list;
     }
 
-    public Carro save(Carro carro) {
-        return carroRepository.save(carro);
+    public CarroDTO save(Carro carro) {
+        return CarroDTO.create(carroRepository.save(carro));
     }
 
     public List<Carro> getCarrosFake() {

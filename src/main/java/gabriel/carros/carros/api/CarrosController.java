@@ -40,9 +40,10 @@ public class CarrosController {
     }
 
     @PostMapping()
-    public String post(@RequestBody Carro carro){
-        Carro c = service.save(carro);
-        return "Carro salvo" + c.getId();
+    public ResponseEntity post(@RequestBody Carro carro){
+        try {
+            
+        }
     }
 
     @PutMapping("/{id]")
