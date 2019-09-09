@@ -32,6 +32,7 @@ public class CarroService {
     }
 
     public CarroDTO save(Carro carro) {
+        Assert.isNull(carro.getId(), "Não foi possível inserir o registro");
         return CarroDTO.create(carroRepository.save(carro));
     }
 
@@ -42,25 +43,24 @@ public class CarroService {
         return carros;
     }
 
-    public Carro update(Carro carro, Long id) {
+    public CarroDTO update(Carro carro, Long id) {
         Assert.notNull(id, "Não foi possível atualizar o registro");
 
-//        //busca o carro no banco de dados
-//        //Optional<Carro> optional = getCarroByID(id);
-//        //valida se o carro existe
-//        if(optional.isPresent()){
-//            // copia as propriedades vindas do json para o banco
-//            Carro db = optional.get();
-//            db.setNome(carro.getNome());
-//            db.setTipo(carro.getTipo());
-//            System.out.print("Carro id: "+db.getId());
-//            //salva as alterações
-//            carroRepository.save(db);
-//            return db;
-//        } else {
-//            throw new RuntimeException("Não foi possível atualizar o registro");
-//        }
-        return null;
+        //busca o carro no banco de dados
+        Optional<Carro> optional = carroRepository.findById(id);
+        //valida se o carro existe
+        if(optional.isPresent()){
+            // copia as propriedades vindas do json para o banco
+            Carro db = optional.get();
+            db.setNome(carro.getNome());
+            db.setTipo(carro.getTipo());
+            System.out.print("Carro id: "+db.getId());
+            //salva as alterações
+            carroRepository.save(db);
+            return CarroDTO.create(db);
+        } else {
+            throw new RuntimeException("Não foi possível atualizar o registro");
+        }
     }
 
     public void delete(Long id) {

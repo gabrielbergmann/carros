@@ -13,6 +13,4 @@ public class Carro {
     private Long id;
     private String nome;
     private String tipo;
-
-
 }
