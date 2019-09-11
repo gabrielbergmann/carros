@@ -63,12 +63,11 @@ public class CarroService {
         }
     }
 
-    public void delete(Long id) {
-        //Optional<Carro> carro = getCarroByID(id);
+    public boolean delete(Long id) {
         if (getCarroByID(id).isPresent()) {
             carroRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Não foi possível deletar o registro");
+            return true;
         }
+        return false;
     }
 }
