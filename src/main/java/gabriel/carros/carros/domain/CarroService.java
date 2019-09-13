@@ -1,5 +1,6 @@
 package gabriel.carros.carros.domain;
 
+import gabriel.carros.carros.api.exception.ObjectNotFoundException;
 import gabriel.carros.carros.domain.dto.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,9 @@ public class CarroService {
         return list;
     }
 
-    public Optional<CarroDTO> getCarroByID(Long id) {
-        return carroRepository.findById(id).map(c -> CarroDTO.create(c));
+    public CarroDTO getCarroByID(Long id) {
+        Optional<Carro> carro = carroRepository.findById(id);
+        return carro.map(CarroDTO::create).orElseThrow(() -> new ObjectNotFoundException("Carro não encontrado!"));
     }
 
     public List<CarroDTO> getCarroByTipo(String tipo) {
@@ -49,12 +51,12 @@ public class CarroService {
         //busca o carro no banco de dados
         Optional<Carro> optional = carroRepository.findById(id);
         //valida se o carro existe
-        if(optional.isPresent()){
+        if (optional.isPresent()) {
             // copia as propriedades vindas do json para o banco
             Carro db = optional.get();
             db.setNome(carro.getNome());
             db.setTipo(carro.getTipo());
-            System.out.print("Carro id: "+db.getId());
+            System.out.print("Carro id: " + db.getId());
             //salva as alterações
             carroRepository.save(db);
             return CarroDTO.create(db);
@@ -63,11 +65,7 @@ public class CarroService {
         }
     }
 
-    public boolean delete(Long id) {
-        if (getCarroByID(id).isPresent()) {
-            carroRepository.deleteById(id);
-            return true;
-        }
-        return false;
+    public void delete(Long id) {
+        carroRepository.deleteById(id);
     }
 }

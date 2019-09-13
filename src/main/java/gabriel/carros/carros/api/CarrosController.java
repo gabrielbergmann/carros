@@ -6,6 +6,7 @@ import gabriel.carros.carros.domain.dto.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -27,10 +28,8 @@ public class CarrosController {
 
     @GetMapping("/{id}")
     public ResponseEntity get(@PathVariable("id") Long id) {
-        Optional<CarroDTO> carro = service.getCarroByID(id);
-        return carro.isPresent() ?
-            ResponseEntity.ok(carro.get()) :
-            ResponseEntity.notFound().build();
+        CarroDTO carro = service.getCarroByID(id);
+        return ResponseEntity.ok(carro);
     }
 
     @GetMapping("/tipo/{tipo}")
@@ -42,14 +41,11 @@ public class CarrosController {
     }
 
     @PostMapping()
-    public ResponseEntity post(@RequestBody Carro carro){
-        try {
-            CarroDTO carroDTO = service.save(carro);
-            URI location = getURI(carroDTO.getId());
-            return ResponseEntity.created(location).build();
-        } catch (Exception ex) {
-            return ResponseEntity.badRequest().build();
-        }
+    @Secured({"ROLE_ADMIN"})
+    public ResponseEntity post(@RequestBody Carro carro) {
+        CarroDTO carroDTO = service.save(carro);
+        URI location = getURI(carroDTO.getId());
+        return ResponseEntity.created(location).build();
     }
 
     private URI getURI(Long id) {
@@ -59,24 +55,21 @@ public class CarrosController {
     @PutMapping("update/{id]")
     public ResponseEntity put(@PathVariable("id") Long id, @RequestBody Carro carro) {
         try {
-        carro.setId(id);
-        CarroDTO carroDTO = service.update(carro, id);
+            carro.setId(id);
+            CarroDTO carroDTO = service.update(carro, id);
 
-        return carroDTO != null ?
-                ResponseEntity.ok(carroDTO) :
-                ResponseEntity.notFound().build();
+            return carroDTO != null ?
+                    ResponseEntity.ok(carroDTO) :
+                    ResponseEntity.notFound().build();
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             return ResponseEntity.badRequest().build();
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") Long id) {
-        boolean ok = service.delete(id);
-
-        return ok ?
-                ResponseEntity.ok().build() :
-                ResponseEntity.notFound().build();
+        service.delete(id);
+        return ResponseEntity.ok().build();
     }
 }
