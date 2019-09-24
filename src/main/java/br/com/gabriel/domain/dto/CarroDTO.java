@@ -1,6 +1,6 @@
-package gabriel.carros.carros.domain.dto;
+package br.com.gabriel.domain.dto;
 
-import gabriel.carros.carros.domain.Carro;
+import br.com.gabriel.domain.Carro;
 import lombok.Data;
 import org.modelmapper.ModelMapper;
 

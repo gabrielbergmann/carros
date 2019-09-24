@@ -1,9 +1,9 @@
-package gabriel.carros.carros;
+package br.com.gabriel;
 
-import gabriel.carros.carros.api.exception.ObjectNotFoundException;
-import gabriel.carros.carros.domain.Carro;
-import gabriel.carros.carros.domain.CarroService;
-import gabriel.carros.carros.domain.dto.CarroDTO;
+import br.com.gabriel.api.exception.ObjectNotFoundException;
+import br.com.gabriel.domain.Carro;
+import br.com.gabriel.domain.CarroService;
+import br.com.gabriel.domain.dto.CarroDTO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
-import java.util.Optional;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

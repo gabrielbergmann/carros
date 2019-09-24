@@ -1,4 +1,4 @@
-package gabriel.carros.carros.api.exception;
+package br.com.gabriel.api.exception;
 
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;

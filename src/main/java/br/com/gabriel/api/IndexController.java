@@ -1,4 +1,4 @@
-package gabriel.carros.carros.api;
+package br.com.gabriel.api;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;

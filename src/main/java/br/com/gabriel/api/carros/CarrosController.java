@@ -1,8 +1,8 @@
-package gabriel.carros.carros.api;
+package br.com.gabriel.api.carros;
 
-import gabriel.carros.carros.domain.Carro;
-import gabriel.carros.carros.domain.CarroService;
-import gabriel.carros.carros.domain.dto.CarroDTO;
+import br.com.gabriel.domain.Carro;
+import br.com.gabriel.domain.CarroService;
+import br.com.gabriel.domain.dto.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/carros")

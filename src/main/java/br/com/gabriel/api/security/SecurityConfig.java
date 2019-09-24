@@ -1,4 +1,4 @@
-package gabriel.carros.carros.api.security;
+package br.com.gabriel.api.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;

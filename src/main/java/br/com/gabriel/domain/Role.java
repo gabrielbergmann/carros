@@ -1,4 +1,4 @@
-package gabriel.carros.carros.domain;
+package br.com.gabriel.domain;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

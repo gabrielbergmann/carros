@@ -1,7 +1,7 @@
-package gabriel.carros.carros.domain;
+package br.com.gabriel.domain;
 
-import gabriel.carros.carros.api.exception.ObjectNotFoundException;
-import gabriel.carros.carros.domain.dto.CarroDTO;
+import br.com.gabriel.api.exception.ObjectNotFoundException;
+import br.com.gabriel.domain.dto.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
