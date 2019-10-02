@@ -1,7 +1,7 @@
-package br.com.gabriel.api.security;
+package br.com.gabriel.api.infra.security;
 
-import br.com.gabriel.domain.User;
-import br.com.gabriel.domain.UserRepository;
+import br.com.gabriel.api.usuarios.User;
+import br.com.gabriel.api.usuarios.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

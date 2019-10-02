@@ -1,8 +1,8 @@
-package br.com.gabriel.domain;
+package br.com.gabriel.api.carros;
 
-import br.com.gabriel.api.exception.ObjectNotFoundException;
-import br.com.gabriel.domain.dto.CarroDTO;
+import br.com.gabriel.api.infra.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -16,10 +16,9 @@ public class CarroService {
     @Autowired
     CarroRepository carroRepository;
 
-    public List<CarroDTO> getCarros() {
-        List<Carro> carro = carroRepository.findAll();
-        List<CarroDTO> list = carro.stream().map(c -> CarroDTO.create(c)).collect(Collectors.toList());
-        return list;
+    public List<CarroDTO> getCarros(Pageable pegeable) {
+        List<CarroDTO> carro = carroRepository.findAll(pegeable).stream().map(c -> CarroDTO.create(c)).collect(Collectors.toList());;
+        return carro;
     }
 
     public CarroDTO getCarroByID(Long id) {
@@ -27,10 +26,9 @@ public class CarroService {
         return carro.map(CarroDTO::create).orElseThrow(() -> new ObjectNotFoundException("Carro não encontrado!"));
     }
 
-    public List<CarroDTO> getCarroByTipo(String tipo) {
-        List<Carro> carro = carroRepository.findByTipo(tipo);
-        List<CarroDTO> list = carro.stream().map(c -> CarroDTO.create(c)).collect(Collectors.toList());
-        return list;
+    public List<CarroDTO> getCarroByTipo(String tipo, Pageable pageable) {
+        List<CarroDTO> carro = carroRepository.findByTipo(tipo, pageable).stream().map(c -> CarroDTO.create(c)).collect(Collectors.toList());
+        return carro;
     }
 
     public CarroDTO save(Carro carro) {

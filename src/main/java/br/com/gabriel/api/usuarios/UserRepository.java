@@ -1,4 +1,4 @@
-package br.com.gabriel.domain;
+package br.com.gabriel.api.usuarios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

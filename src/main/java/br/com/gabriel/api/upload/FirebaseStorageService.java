@@ -1,6 +1,5 @@
-package br.com.gabriel.domain.upload;
+package br.com.gabriel.api.upload;
 
-import br.com.gabriel.api.upload.UploadInput;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.storage.Acl;
 import com.google.cloud.storage.Blob;

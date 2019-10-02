@@ -1,7 +1,5 @@
 package br.com.gabriel.api.upload;
 
-import br.com.gabriel.domain.upload.FirebaseStorageService;
-import com.google.firebase.internal.FirebaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

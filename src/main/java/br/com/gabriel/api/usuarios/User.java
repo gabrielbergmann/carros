@@ -1,4 +1,4 @@
-package br.com.gabriel.domain;
+package br.com.gabriel.api.usuarios;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;

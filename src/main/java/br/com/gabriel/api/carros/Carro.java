@@ -1,4 +1,4 @@
-package br.com.gabriel.domain;
+package br.com.gabriel.api.carros;
 
 import lombok.*;
 

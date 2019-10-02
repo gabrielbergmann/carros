@@ -1,9 +1,7 @@
 package br.com.gabriel.api.carros;
 
-import br.com.gabriel.domain.Carro;
-import br.com.gabriel.domain.CarroService;
-import br.com.gabriel.domain.dto.CarroDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -21,8 +19,9 @@ public class CarrosController {
     private CarroService service;
 
     @GetMapping()
-    public ResponseEntity<List<CarroDTO>> get() {
-        return new ResponseEntity<>(service.getCarros(), HttpStatus.OK);
+    public ResponseEntity<List<CarroDTO>> get(@RequestParam(value = "page", defaultValue = "0") Integer page,
+                                              @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        return new ResponseEntity<>(service.getCarros(PageRequest.of(page, size)), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -32,8 +31,10 @@ public class CarrosController {
     }
 
     @GetMapping("/tipo/{tipo}")
-    public ResponseEntity getCarrosByTipo(@PathVariable("tipo") String tipo) {
-        List<CarroDTO> carros = service.getCarroByTipo(tipo);
+    public ResponseEntity getCarrosByTipo(@PathVariable("tipo") String tipo,
+                                          @RequestParam(value = "page", defaultValue = "0") Integer page,
+                                          @RequestParam(value = "size", defaultValue = "10") Integer size) {
+        List<CarroDTO> carros = service.getCarroByTipo(tipo, PageRequest.of(page, size));
         return carros.isEmpty() ?
                 ResponseEntity.noContent().build() :
                 ResponseEntity.ok(carros);

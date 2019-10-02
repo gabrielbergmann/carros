@@ -1,4 +1,4 @@
-package br.com.gabriel.api.security.jwt;
+package br.com.gabriel.api.infra.security.jwt;
 
 import lombok.Data;
 

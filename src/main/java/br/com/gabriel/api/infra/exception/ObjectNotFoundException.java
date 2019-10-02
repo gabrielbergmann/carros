@@ -1,4 +1,4 @@
-package br.com.gabriel.api.exception;
+package br.com.gabriel.api.infra.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

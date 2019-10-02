@@ -1,9 +1,9 @@
 package br.com.gabriel;
 
-import br.com.gabriel.api.exception.ObjectNotFoundException;
-import br.com.gabriel.domain.Carro;
-import br.com.gabriel.domain.CarroService;
-import br.com.gabriel.domain.dto.CarroDTO;
+import br.com.gabriel.api.infra.exception.ObjectNotFoundException;
+import br.com.gabriel.api.carros.Carro;
+import br.com.gabriel.api.carros.CarroService;
+import br.com.gabriel.api.carros.CarroDTO;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

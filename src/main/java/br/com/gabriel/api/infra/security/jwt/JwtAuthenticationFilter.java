@@ -1,7 +1,7 @@
-package br.com.gabriel.api.security.jwt;
+package br.com.gabriel.api.infra.security.jwt;
 
-import br.com.gabriel.domain.User;
-import br.com.gabriel.domain.dto.UserDTO;
+import br.com.gabriel.api.usuarios.User;
+import br.com.gabriel.api.usuarios.UserDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
